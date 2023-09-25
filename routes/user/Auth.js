@@ -113,9 +113,16 @@ router.get("/logout", (req, res) => {
       .cookie("Token", "", {
         expires: new Date(0),
         sameSite: "strict",
-        httpOnly: true,
+        httpOnly: false,
         domain: process.env.ORIGIN_DOMAIN,
         secure: true,
+      })
+      .cookie("isLoggedIn", true, {
+        expires: new Date(0),
+        httpOnly: false,
+        secure: true,
+        sameSite: "none",
+        domain: process.env.ORIGIN_DOMAIN,
       })
       .status(StatusCodes.OK)
       .json({ message: StatusMessages.LOGOUT_SUCCESS });

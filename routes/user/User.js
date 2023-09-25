@@ -100,10 +100,10 @@ router.post("/login", async (req, res) => {
     res
       .status(201)
       .cookie("Token", token, {
-        sameSite: "none",
-        httpOnly: true,
         expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+        httpOnly: false,
         secure: true,
+        sameSite: "none",
       })
       .cookie("isLoggedIn", true, {
         expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
